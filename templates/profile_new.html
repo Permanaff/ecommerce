@@ -1,0 +1,234 @@
+{% extends 'layout.html' %}
+{% block head %}
+
+<title>My Account | Urban</title>
+
+{% endblock %}
+{% block body %}
+{% include 'navbar.html' %}
+
+<div class="container">
+    <div class="container mt-5 ">   
+        <div class="row">
+
+            <div class="col-2"> 
+                <div class="row">
+                    <div class="col-auto">
+                        <img src="\static\images\profile.jpeg" class="rounded-circle" alt="Deskripsi gambar" style="width: 55px">
+                    </div>
+                    
+                    <div class="col">
+                        <p class="text fw-bold mb-0">{{name}}</p> 
+                        <i class="fa-solid fa-pencil fa-2xs" style="color: #a3a3a3;">
+                            <a class="fw-light" href="#detail-profil" style="color: #a3a3a3;" >Ubah Profil</a>
+                        </i>
+                    </div>
+                </div>
+
+                <div class="row ms-2 mt-5">
+                    <div class="col-1">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="col">
+                        <a href="#collapseProfil" class="fw-bold" data-bs-toggle="collapse" id="collapse-akun-saya">Akun Saya</a>
+                    </div>
+                </div>
+
+                <div class="collapse" id="collapseProfil">
+                    <div class="row ms-2">
+                        <div class="col-1"></div>
+                        <div class="col-5">
+                            <div class="row">
+                                <!-- <button type="button" class="btn btn-primary btn-light border-0 w-100" style="background-color: #d8d8d8; color: #ffffff;">
+                                </button> -->
+                                <a href="/profile" id="btn-detail-profil" class="fw-light profil-content text-body-secondary" style="color: #a3a3a3;">Profil</a>
+                                <a href="#" id="btn-detail-alamat" class="fw-light profil-content mt-2 text-body-secondary" style="color: #a3a3a3;">Alamat</a>
+                                <a href="#" class="fw-light profil-content mt-2 text-body-secondary" style="color: #a3a3a3;  white-space: nowrap;">Ubah Password</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+
+                <div class="row ms-2 mt-3">
+                    <div class="col-1">
+                        <i class="fa-solid fa-list"></i>
+                    </div>
+                    <div class="col">
+                        <a class="fw-bold" href="#">Pesanan Saya</a>
+                    </div>
+                </div>
+
+                <div class="row ms-2 mt-3">
+                    <div class="col-1">
+                        <i class="fa-solid fa-bell"></i>
+                    </div>
+                    <div class="col">
+                        <a class="fw-bold" data-bs-toggle="collapse" href="#collapseNotif" id="collapse-notifikasi">Notifikasi</a>
+                    </div>
+                </div>
+
+                <div class="collapse" id="collapseNotif">
+                    <div class="row ms-2">
+                        <div class="col-1"></div>
+                        <div class="col-5">
+                            <div class="row">
+                                <a href="/profile" id="btn-detail-profil" class="fw-light profil-content text-body-secondary" style="white-space: nowrap;">Status Pemesanan</a>
+                                <a href="#" id="btn-detail-alamat" class="fw-light profil-content mt-2" style="color: #a3a3a3;  white-space: nowrap;">Info Promo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+
+                <div class="row ms-2 mt-3">
+                    <div class="col-1">
+                        <i class="fa-solid fa-percent"></i>
+                    </div>
+                    <div class="col">
+                        <a class="fw-bold" href="">Voucher Saya</a>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Contente Profile -->
+            <div class="col-9 ms-5"> 
+                <div class="card shadow-sm border-1 rounded-0">
+                    <div class="card-body" id="card-detail-profile">
+     
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="edit-by-alie" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Understood</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal-tmbh-alamat" tabindex="-1" aria-labelledby="modal-tmbh-alamat" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form action="{{url_for('simpanAlamat')}}" method="POST">
+                <div class="modal-body">
+                    <h5 class="fs-5 fw-bold mb-4">Alamat Baru</h5>
+                        <div class="mb-3 mt-3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Nama lengkap" name="inpNama">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Nomor telepon" name="inpTelp">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <select class="form-select form-select-sm rounded-0 provinsi"  name="inpProvinsi" onchange="getKota()">
+                                <option>Provinsi</option>
+                            </select>   
+                        </div>
+                        <div class="mt-4">
+                            <select class="form-select form-select-sm rounded-0 kota"  name="inpKota" onchange="getKecamatan()">
+                                <option>Kota/Kabupaten</option>
+                            </select>  
+                        </div>
+                        <div class="mt-4">
+                            <select class="form-select form-select-sm rounded-0 kecamatan" id="kecamatan" name="inpKec">
+                                <option>Kecamatan</option>
+                            </select>  
+                        </div>
+
+                        <div class="mt-4">
+                            <textarea name="inpAlamat" id="" cols="55" rows="3" placeholder="Detail Alamat"></textarea>
+                        </div>
+                        <div class="mt-4">
+                            <input type="text" name="inpKode_pos" id="kode_pos " class="form-control rounded-0" placeholder="Kode pos">
+                        </div>
+                    </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>  
+        </div>  
+    </div>
+</div>  
+
+
+<!-- Modal Edit Alamat -->
+<div class="modal fade" id="modal-edit-alamat" tabindex="-1" aria-labelledby="modal-edit-alamat" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" id="content-modal">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close" data-dismiss="modal" id="btn-close-edit-alamat" aria-hidden="true" onclick="$('#modal-edit-alamat').modal('hide');"></button>
+            </div>
+            <form action="{{url_for('simpanAlamat')}}" method="POST">
+                <div class="modal-body" id="modal-edit">
+                    <h5 class="fs-5 fw-bold mb-4">Alamat Baru</h5>
+                    <div class="mb-3 mt-3">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="edit-nama-alamat" placeholder="Nama lengkap" name="inpNama" value="${dataAlamat.nama_lengkap}">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="edit-no_telp-alamat" placeholder="Nomor telepon" name="inpTelp" value="${dataAlamat.no_telp}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <select class="form-select rounded-0 provinsi" id="edit-provinsi-alamat"  name="inpProvinsi" >
+                        </select> 
+                    </div>
+                    <div class="mt-4">
+                        <select class="form-select rounded-0 kota" id="edit-kota-alamat" name="inpKota" >
+                        </select>  
+                    </div>
+                    <div class="mt-4">
+                        <select class="form-select rounded-0 kecamatan" id="edit-kecamatan-alamat" name="inpKec">
+                        </select>  
+                    </div>
+                    <div class="mt-4">
+                        <textarea name="inpAlamat" id="edit-detail-alamat" cols="55" rows="3" placeholder="Detail Alamat"></textarea>
+                    </div>
+                    <div class="mt-4">
+                        <input type="text" name="inpKode_pos" id="edit-kode-pos-alamat" class="form-control rounded-0" placeholder="Kode pos">
+                    </div>
+                </div>  
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>  
+
+        </div>
+    </div>
+</div>  
+
+
+{% endblock%}
+
+
+
+
+
+
+ 

@@ -1,0 +1,135 @@
+.produk_link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.produk_link:hover {
+    color: black;
+}
+
+#produckKlick {
+    color: inherit;
+    text-decoration: none;
+}
+
+#produckKlick :hover {
+    color: black;
+}
+
+#text-login {
+    color: #B31312;
+    text-decoration: none;
+}
+
+.vertical-line {
+    border-left: 1px solid #bdbdbd; 
+    height: 20px;
+    margin: 0 20px; 
+  }
+
+.vertical-line-2 {
+    border-left: 1px solid #bdbdbd; 
+    height: 200px; 
+    margin: 0 10px; 
+}
+
+
+
+.detail-profil {
+color: #B31312;
+}
+
+
+
+
+
+body {
+    font-family: monserrat , sans-serif;
+}
+
+.navbar .navbar-brand {
+    font-family: monserrat, sans-serif;
+}
+
+.navbar .navbar-item {
+    font-family: monserrat, sans-serif;
+}
+
+
+a {
+    font-family: monserrat, sans-serif;
+    text-decoration: none;
+    color: black;
+}
+
+i {
+    font-family: monserrat, sans-serif;
+}
+
+.profil-content {
+    font-size: 15px;
+}
+
+#daySelect, #monthSelect, #yearSelect {
+    width: 100px; 
+}
+
+
+
+#profile-dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+#profile-dropdown .dropdown-menu a:hover {
+    background-color: #e3e3e3; 
+
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+.wrapper{
+    height: 50px;
+    min-width: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFF;
+    border-radius: 5px;
+    outline: 1px solid #B31312;
+    }
+.wrapper span{
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+}
+.wrapper span.num{
+    font-size: 20px;
+    border-right: 2px solid rgba(0,0,0,0.2);
+    border-left: 2px solid rgba(0,0,0,0.2);
+    pointer-events: none;
+}
+
+
+
+
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
+.list-unstyled li {
+    margin-bottom: 10px; 
+}
+
+

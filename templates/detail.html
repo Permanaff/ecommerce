@@ -1,0 +1,101 @@
+{% extends 'layout.html' %}
+{% block head %}
+
+{% for product in products %}
+<title>Jual {{ product['name'] }} | UrbanGlobe</title>
+{% endfor %}
+
+
+{%endblock%}
+{%block body%}
+{% include 'navbar.html' %}
+
+
+<div class="container mt-4">
+    <div class="container mt-5">
+        <div class="row">
+            {% for product in products %}
+            <!-- Gambar Produk -->
+             <div class="col-md-4" id="image-detail">
+                <img src="{{ url_for('static', filename='images/product/' + product['image'], user_id=user) }}" class="img-fluid" alt="Nama Barang" style="width: 400px;">
+            </div>           
+            <!-- Detail Produk -->
+            <div class="col-md-5">
+                <h2>{{ product['name'] }}</h2>
+                <p class="text-muted">Kategori Barang</p>
+                <p class="fs-3 fw-bold">Rp{{ "{:,.0f}".format(product['price']).replace(',', '.') }}</p>
+                <hr class="my-3">
+                <h6 class="m-1" id="detail">Detail</h6>
+                <hr class="my-3">
+                <div id="displayText">
+                    <pre id="desc_product" class="text-justify wrapped-text" style="font-family: monserrat , sans-serif; white-space: pre-wrap;">{{ product['description'] }}</pre>
+                </div>
+                <a class="mt-2 mb-3 " id="readMoreBtn" href="#detail" style="color: #B31312;">Tampilkan Lebih Banyak</a>
+                <a class="mt-2 mb-3" id="readLessBtn" href="#" style="display: none; color: #B31312;">Tampilkan Lebih Sedikit</a>
+                <hr class="my-4">
+                
+                <!-- Nama Toko  -->
+                <div class="row">
+                    <div class="col-auto">
+                        <img src="{{ url_for('static', filename='images/profil_seller/' + profileImage) }}" class="rounded-circle border border-secondary" alt="Deskripsi gambar" style="width: 55px">
+                    </div>
+                    <div class="col">
+                        <p class="text fw-bold">{{tokoName}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Jumlah Stok</h5>
+                        <p class="card-text stok-barang" data-stok="{{ product['stok'] }}:">{{product['stok']}}</p>
+                    </div>
+                    {% if product['stok'] >= 1 %}
+                    <ul class="list-group list-group-flush">
+                        <div class="container mt-3 mb-3">
+                            <div class="wrapper">
+                                <span class="minus">-</span>
+                                <span class="num">1</span>
+                                <span class="plus">+</span>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                              <div class="col">
+                                <p class="fs-6 text-body-secondary mt-1">Subtotal</p>
+                              </div>
+                              <div class="col">
+                                <p class="subtotal-display fs-5 fw-semibold text-end" data-product-price="{{ product['price'] }}">Rp{{ "{:,.0f}".format(product['price']).replace(',', '.') }}</p>
+
+                              </div>
+                        </div>
+                    {% else %}
+                    <ul class="list-group list-group-flush">
+                        <div class="container mt-3 text-center">
+                            <p class="fs-4 fw-bold" style="color: #B31312;">Stok Habis</p>
+                        </div>
+                    </ul>
+                    {% endif %}
+                    </ul>
+                    <div class="card-body">
+                        <button class="btn btn-success" id="btn-beli">Beli</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% include 'footer.html' %}
+
+
+
+{%endblock%}
+
+{%block scripts%}
+
+
+{%endblock%}

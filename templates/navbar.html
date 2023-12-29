@@ -1,0 +1,121 @@
+
+    <nav class="navbar navbar-expand-lg sticky-top shadow-sm" style="background-color: #fff ;">
+        <div class="container px-5">
+            <a class="navbar-brand mb-1" href="{{url_for('home')}}">
+                <img src="\static\images\logo\navbar-brand.png" alt="logo-brand" width="150px" style="object-fit: cover;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{url_for('home')}}">Home</a>
+                    </li>
+                </ul>
+                <form class="d-flex" method="POST" action="{{ url_for('logout') }}">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                </form>
+                
+                {% if sessionStatus == 1 %}
+                
+                <!-- Notifikasi -->
+                <div class="dropdown ms-2 d-flex " id="notif-dropdown" >
+                    <button class="btn btn-dark" type="button" data-bs-toggle="dropdown" aria-expanded="false">    
+                        <i class="fa-solid fa-bell" style="color: #fff;"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Notifikasi 1</a></li>
+                    </ul>
+                </div>
+                    <!-- Keranjang -->
+                <form class="d-flex ms-2">
+                    <button class="btn btn-dark " type="submit">
+                        <i class="fa-solid fa-cart-shopping me-2" style="color: #ffffff;"></i>
+                        Cart
+                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    </button>
+                </form>
+
+                <div class="vertical-line mt-auto mb-auto "></div>
+                
+                <!-- Profile -->
+                <div class="dropdown ms-2 " id="profile-dropdown" >
+                    <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"">
+                        <i class="fa-regular fa-user me-2 " aria-disabled="true" style="color: #ffffff;"></i>              
+                        {{name}}
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/account">Profile</a></li>
+                        {% if level_user == 1 or level_user == 2 %}
+                        <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+
+                        {% elif level_user != 1 or level_user != 2 %}
+                        <li><button type="button" class="btn btn-primary border-0 dropdown-item" data-bs-toggle="modal" data-bs-target="#modalToko">Daftar Toko</button></li>
+                        <!-- <li><a class="dropdown-item" href="#"  data-toggle="modal" data-target="#modalToko">Daftar Toko</a></li> -->
+
+                        {% endif %}
+                        <hr class="my-4 mt-1 mb-1">
+                        
+                        <li><a class="dropdown-item" href="{{ url_for('logout') }}">Keluar<span class="ms-2"><i class="fa-solid fa-right-from-bracket"></i></span></a> 
+                        </li>
+                    </ul>
+                </div>
+
+                {%else%}
+                <div class="vertical-line"></div>
+
+                <button type="button" class="btn btn-outline-danger fw-bold ms-3" data-bs-toggle="modal" data-bs-target="#modalLogin">Masuk</button>
+
+                <form class="d-flex ms-3" method="POST" action="{{ url_for('register') }}">
+                    <button type="submit" class="btn btn-danger fw-bold">Daftar</button>
+                </form>
+                {%endif%}
+
+            </div>
+        </div>
+    </nav>
+    
+    <div class="modal fade" id="modalLogin">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row mb-4 mt-2">
+                        <div class="col-md-4">
+                            <h1 class="fs-2 fw-bold">Masuk</h1>
+                        </div>
+                        <div class="col-md-4 ms-auto">
+                            <a id="text-login" href="{{url_for('register')}}">
+                                <p  class="text-sm-end mt-2">Daftar</p>
+                            </a>
+                            <!-- <p class="text-sm-end mt-2">Daftar</p> -->
+                        </div>
+                    </div>
+                    <form action="{{url_for('login')}}" method="POST">
+                        <div class="mblank-3">
+                            <label class="form-label">Email Address</label>
+                            <input name="inpEmail" type="email" class="form-control">
+                        </div>
+                        <div class="mblank-3">
+                            <label class="form-label mt-2">Password</label>
+                            <input name="inpPass" type="password" class="form-control">
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary mt-4">Login</button>
+                        </div>                   
+                    </form>
+                </div>  
+                <!-- Modal footer -->
+                <div class="modal-footer border-0"></div>
+            </div>
+        </div>
+    </div>
+
+
+

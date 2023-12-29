@@ -1,0 +1,83 @@
+{% extends 'layout.html' %}
+{% block head %}
+<title>Dashboard | Urban</title>
+{%endblock%}
+{%block body%}
+{% include 'navbar.html' %}
+
+<div class="row">
+    <div class="col-sm-2">
+        <div class="card shadow-sm rounded-0">
+            <div class="card-body vh-100">
+
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row align-items-center" id="profil-side">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="row ms-2 mt-2">
+                    <div class="col-1">
+                        <i class="fa-solid fa-house"></i>
+                    </div>
+                    <div class="col">
+                        <a href="/beranda" class="fw-bold" data-bs-toggle="collapse" id="btn-beranda">Beranda</a>
+                    </div>
+                </div>
+                <div class="row ms-2 mt-2">
+                    <div class="col-1">
+                        <i class="fa-solid fa-store"></i>
+                    </div>
+                    <div class="col">
+                        <a href="" class="fw-bold" data-bs-toggle="collapse" id="btn-tokoAnda">Toko Anda</a>
+                    </div>
+                </div>
+
+                <div class="row ms-2 mt-2">
+                    <div class="col-1">
+                        <i class="fa-solid fa-box"></i>
+                    </div>
+                    <div class="col">
+                        <a href="#collapseProduk" class="fw-bold" data-bs-toggle="collapse" id="collapse-produk-saya">Produk Anda</a>
+                    </div>
+                </div>
+
+                <div class="collapse" id="collapseProduk">
+                    <div class="row ms-2">
+                        <div class="col-1"></div>
+                        <div class="col-5">
+                            <div class="row">
+                                <!-- <button type="button" class="btn btn-primary btn-light border-0 w-100" style="background-color: #d8d8d8; color: #ffffff;">
+                                </button> -->
+                                <a href="/profile" id="btn-daftar-produk" class="fw-light profil-content mt-2 text-body-secondary" style="color: #a3a3a3; white-space: nowrap;">Daftar Produk</a>
+                                <a href="#" id="btn-tambah-produk" class="fw-light profil-content mt-2 text-body-secondary" style="color: #a3a3a3; white-space: nowrap;">Tambah Produk</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+    <div class="col-9" id="content-dashboard">
+        <!-- Content -->
+
+    </div>
+</div>  
+
+
+{% include 'footer.html' %}
+
+
+
+{%endblock%}
+
+{% block scripts %}
+    <script src="\static\scripts\dashboard.js"></script>
+{%endblock%}
+
